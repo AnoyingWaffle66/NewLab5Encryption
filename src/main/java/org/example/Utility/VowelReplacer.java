@@ -43,11 +43,11 @@ public class VowelReplacer implements IStringEncryptable{
         return theCharacterInQuestion;
     }
     public String makeMeAStringStupid(char[] myCharacters){
-        String aStupidStringMadeOfArrays = "";
+        StringBuilder aStupidStringMadeOfArrays = new StringBuilder();
         for (int i = 0; i < myCharacters.length; i++){
-            aStupidStringMadeOfArrays += myCharacters[i];
+            aStupidStringMadeOfArrays.append(myCharacters[i]);
         }
-        return aStupidStringMadeOfArrays;
+        return aStupidStringMadeOfArrays.toString();
     }
 
     @Override

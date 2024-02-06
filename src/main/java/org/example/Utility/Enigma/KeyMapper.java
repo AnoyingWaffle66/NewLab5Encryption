@@ -1,10 +1,10 @@
-package org.example.Utility;
+package org.example.Utility.Enigma;
 
 import java.util.Random;
 
 public class KeyMapper {
-    int[] keyMapping = new int[26];
-    Random myRandom = new Random();
+    private int[] keyMapping = new int[26];
+    private Random myRandom = new Random();
 
     public KeyMapper(){
         pairKeys();

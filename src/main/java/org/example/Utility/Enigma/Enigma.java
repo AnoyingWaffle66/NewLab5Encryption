@@ -1,9 +1,12 @@
-package org.example.Utility;
+package org.example.Utility.Enigma;
+
+import org.example.Utility.IStringEncryptable;
 
 import java.util.Random;
 
 public class Enigma implements IStringEncryptable {
-    private char[] key = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    private char[] keyOriginal = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    private char[] key = new char[keyOriginal.length];
     private int rotorOneCurrentValue, rotorTwoCurrentValue, rotorThreeCurrentValue;
 
     public Enigma() {
@@ -11,6 +14,7 @@ public class Enigma implements IStringEncryptable {
         this.rotorOneCurrentValue = randomRotor.nextInt(key.length);
         this.rotorTwoCurrentValue = randomRotor.nextInt(key.length);
         this.rotorThreeCurrentValue = randomRotor.nextInt(key.length);
+        setKeyPositions();
     }
 
     @Override
@@ -129,11 +133,24 @@ public class Enigma implements IStringEncryptable {
         return currentChar;
     }
 
-    public String makeMeAStringStupid(char[] myCharacters) {
-        String aStupidStringMadeOfArrays = "";
-        for (int i = 0; i < myCharacters.length; i++) {
-            aStupidStringMadeOfArrays += myCharacters[i];
+    private int[] obtainKeyPositions(){
+        KeyMapper keyPositions = new KeyMapper();
+        return keyPositions.getKeyMapping();
+    }
+
+    private void setKeyPositions(){
+        int[] newKeyPositions = obtainKeyPositions();
+        for (int keyPos = 0; keyPos < key.length/2; keyPos++){
+            key[keyPos] = keyOriginal[newKeyPositions[keyPos]];
+            key[newKeyPositions[keyPos]] = keyOriginal[keyPos];
         }
-        return aStupidStringMadeOfArrays;
+    }
+
+    public String makeMeAStringStupid(char[] myCharacters) {
+        StringBuilder aStupidStringMadeOfArrays = new StringBuilder();
+        for (int i = 0; i < myCharacters.length; i++) {
+            aStupidStringMadeOfArrays.append(myCharacters[i]);
+        }
+        return aStupidStringMadeOfArrays.toString();
     }
 }

@@ -16,11 +16,11 @@ public class Doubler implements IStringEncryptable {
     @Override
     public String decrypt(String phraseToDecrypt) {
         if (phraseToDecrypt != null) {
-            String decrypted = "";
+            StringBuilder decrypted = new StringBuilder();
             for (int decryptIndex = 0; decryptIndex < phraseToDecrypt.length() * .5; decryptIndex++) {
-                decrypted += phraseToDecrypt.charAt(decryptIndex);
+                decrypted.append(phraseToDecrypt.charAt(decryptIndex));
             }
-            return decrypted;
+            return decrypted.toString();
         } else {
             System.out.println("Can't be empty");
             return null;

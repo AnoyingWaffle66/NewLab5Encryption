@@ -1,6 +1,8 @@
 package org.example.Controller;
 
 import org.example.Utility.*;
+import org.example.Utility.Enigma.Enigma;
+import org.example.Utility.Enigma.KeyMapper;
 import org.example.View.Menu;
 import org.example.View.MyIO;
 
@@ -11,10 +13,8 @@ public class TopController {
     private MyIO inputOutput = new MyIO();
     private Menu menus = new Menu();
     private String encryptedStringStorage = "";
-    private KeyMapper keysMapped = new KeyMapper();
 
     public void startHere() {
-//        keysMapped.pairKeys();
         int userSelection = 0;
         while (userSelection != 10) {
             userSelection = menus.mainMenu();
